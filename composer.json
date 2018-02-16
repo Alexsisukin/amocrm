@@ -1,0 +1,20 @@
+{
+  "name": "alexsisukin/amocrm",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexandr Sisykin",
+      "email": "alexandr.s@ucoz-team.net"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "autoload": {
+    "psr-0": {
+      "alexsisukin\\AmoCrm\\": "src/"
+    }
+  }
+}
