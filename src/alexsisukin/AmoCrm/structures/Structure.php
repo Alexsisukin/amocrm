@@ -40,6 +40,7 @@ abstract class Structure
         }
         return $params;
     }
+
     public function setCustomFields($custom_fields, $server_fields)
     {
         if (!is_array($custom_fields) || !is_array($server_fields)) {
@@ -70,4 +71,182 @@ abstract class Structure
 
         $this->custom_fields = $custom_fields;
     }
+
+    /**
+     * @param mixed $name
+     * @return Structure
+     */
+    public function setName($name)
+    {
+        if (is_string($name)) {
+            $this->name = $name;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $created_at
+     * @return Structure
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_numeric($created_at)) {
+            $this->created_at = $created_at;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $updated_at
+     * @return Structure
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        if (is_numeric($updated_at)) {
+            $this->updated_at = $updated_at;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $status_id
+     * @return Structure
+     */
+    public function setStatusId($status_id)
+    {
+        if (is_numeric($status_id)) {
+            $this->status_id = $status_id;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $pipeline_id
+     * @return Structure
+     */
+    public function setPipelineId($pipeline_id)
+    {
+        if (is_numeric($pipeline_id)) {
+            $this->pipeline_id = $pipeline_id;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $responsible_user_id
+     * @return Structure
+     */
+    public function setResponsibleUserId($responsible_user_id)
+    {
+        if (is_numeric($responsible_user_id)) {
+            $this->responsible_user_id = $responsible_user_id;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $sale
+     * @return Structure
+     */
+    public function setSale($sale)
+    {
+        if (is_numeric($sale)) {
+            $this->sale = $sale;
+        }
+        return $this;
+    }
+
+    /**
+     * @param array $tags
+     * @return Structure
+     */
+    public function setTagsNew($tags)
+    {
+        if (is_array($tags)) {
+            $this->tags = implode(',', $tags);
+        }
+        return $this;
+    }
+
+    public function setTagOld($tags)
+    {
+        if (is_array($tags)) {
+            $this->tags = $tags;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $contacts_id
+     * @return Structure
+     */
+    public function setContactsId($contacts_id)
+    {
+        if (is_array($contacts_id)) {
+            $this->contacts_id = $contacts_id;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $company_id
+     * @return Structure
+     */
+    public function setCompanyId($company_id)
+    {
+        $this->company_id = $company_id;
+        return $this;
+    }
+
+    /**
+     * @param mixed $id
+     * @return Structure
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @param mixed $unlink
+     * @return Structure
+     */
+    public function setUnlink($unlink)
+    {
+        $this->unlink = $unlink;
+        return $this;
+    }
+
+    /**
+     * @param mixed $company_name
+     * @return Structure
+     */
+    public function setCompanyName($company_name)
+    {
+        $this->company_name = $company_name;
+        return $this;
+    }
+
+    /**
+     * @param mixed $leads_id
+     * @return Structure
+     */
+    public function setLeadsId($leads_id)
+    {
+        $this->leads_id = $leads_id;
+        return $this;
+    }
+
+    /**
+     * @param mixed $customers_id
+     * @return Structure
+     */
+    public function setCustomersId($customers_id)
+    {
+        $this->customers_id = $customers_id;
+        return $this;
+    }
+
+
 }
