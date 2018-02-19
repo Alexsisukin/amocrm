@@ -3,36 +3,68 @@
  * Created by PhpStorm.
  * User: alex
  * Date: 19.02.18
- * Time: 5:31
+ * Time: 10:25
  */
 
 namespace alexsisukin\AmoCrm\structures;
 
-class TradeAdd extends Structure
+class TradeUpdate extends Structure
 {
 
-    public function __construct($name)
+
+    public function __construct($lead)
     {
-        $this->name = $name;
-        $this->created_at = time();
+        $this->updated_at = time();
+        $this->parseLead($lead);
+    }
+
+    private function parseLead($lead)
+    {
+        $this->setId($lead['id']);
+        $this->setName($lead['name']);
+        $this->setStatusId($lead['status_id']);
+        $this->setCompanyId($lead['pipeline']['id']);
+        $this->setResponsibleUserId(['responsible_user_id']);
+        $this->setSale($lead['sale']);
+        $this->setTags($lead['tags']);
+        $this->setContactsId($lead['contacts']);
+        $this->setCompanyId($lead['company']);
     }
 
     /**
      * @return mixed
      */
-    public function getUpdatedAt()
+    public function getId()
     {
-        return $this->updated_at;
+        return $this->id;
     }
 
     /**
-     * @param mixed $updated_at
-     * @return $this
+     * @param mixed $id
      */
-    public function setUpdatedAt($updated_at)
+    public function setId($id)
     {
-        $this->updated_at = $updated_at;
-        return $this;
+        if (is_numeric($id)) {
+            $this->id = (int)$id;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        if (is_string($name)) {
+            $this->name = $name;
+        }
     }
 
     /**
@@ -45,14 +77,12 @@ class TradeAdd extends Structure
 
     /**
      * @param mixed $status_id
-     * @return $this
      */
     public function setStatusId($status_id)
     {
         if (is_numeric($status_id)) {
             $this->status_id = (int)$status_id;
         }
-        return $this;
     }
 
     /**
@@ -65,14 +95,12 @@ class TradeAdd extends Structure
 
     /**
      * @param mixed $pipeline_id
-     * @return $this
      */
     public function setPipelineId($pipeline_id)
     {
         if (is_numeric($pipeline_id)) {
             $this->pipeline_id = (int)$pipeline_id;
         }
-        return $this;
     }
 
     /**
@@ -85,14 +113,12 @@ class TradeAdd extends Structure
 
     /**
      * @param mixed $responsible_user_id
-     * @return $this
      */
     public function setResponsibleUserId($responsible_user_id)
     {
         if (is_numeric($responsible_user_id)) {
             $this->responsible_user_id = (int)$responsible_user_id;
         }
-        return $this;
     }
 
     /**
@@ -105,12 +131,10 @@ class TradeAdd extends Structure
 
     /**
      * @param mixed $sale
-     * @return $this
      */
     public function setSale($sale)
     {
         $this->sale = $sale;
-        return $this;
     }
 
     /**
@@ -123,14 +147,16 @@ class TradeAdd extends Structure
 
     /**
      * @param mixed $tags
-     * @return $this
      */
     public function setTags($tags)
     {
         if (is_array($tags)) {
-            $this->tags = implode(',',$tags);
+            foreach ($tags as $tag) {
+                if (isset($tag['id'])) {
+                    $this->tags[] = $tag['name'];
+                }
+            }
         }
-        return $this;
     }
 
     /**
@@ -143,14 +169,12 @@ class TradeAdd extends Structure
 
     /**
      * @param mixed $contacts_id
-     * @return $this
      */
     public function setContactsId($contacts_id)
     {
-        if (is_array($contacts_id) || is_numeric($contacts_id)) {
+        if (is_array($contacts_id)) {
             $this->contacts_id = $contacts_id;
         }
-        return $this;
     }
 
     /**
@@ -163,14 +187,12 @@ class TradeAdd extends Structure
 
     /**
      * @param mixed $company_id
-     * @return $this
      */
     public function setCompanyId($company_id)
     {
-        if (is_numeric($company_id)) {
-            $this->company_id = (int)$company_id;
+        if (is_array($company_id)) {
+            $this->company_id = $company_id;
         }
-        return $this;
     }
 
     /**
@@ -180,5 +202,26 @@ class TradeAdd extends Structure
     {
         return $this->custom_fields;
     }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @param mixed $created_at
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_numeric($created_at)) {
+            $this->created_at = $created_at;
+        }
+    }
+
 
 }

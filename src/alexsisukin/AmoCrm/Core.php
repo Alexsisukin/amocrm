@@ -18,10 +18,7 @@ class Core
     /** @var Request */
     private $request;
     private $host;
-    /** @var Account */
-    public $Account;
-    /** @var Trade */
-    public $Trade;
+
 
     public function __construct($user_login, $user_hash, $sub_domain)
     {
@@ -30,15 +27,27 @@ class Core
         $this->sub_domain = $sub_domain;
         $this->host = 'https://' . $this->sub_domain . '.amocrm.ru';
         $this->request = new Request($this->host);
-        $this->init();
     }
 
-    private function init()
+    /**
+     * @return Account
+     */
+    public function Account()
     {
-        $this->Auth();
-        /** TODO ДОБАВИТЬ ошибку если авторизовались криво */
-        $this->Account = new Account($this);
-        $this->Trade = new Trade($this);
+        return new Account($this);
+    }
+
+    /**
+     * @return Trade
+     */
+    public function Trade()
+    {
+        return new Trade($this);
+    }
+
+    public function Contacts()
+    {
+        return new Contacts($this);
     }
 
     /**
@@ -63,7 +72,7 @@ class Core
         }
         foreach ($response['headers']['Set-Cookie'] as $cookie) {
             $cookie = explode(';', $cookie);
-            $this->auth_cookie .= $cookie[0].'; ';
+            $this->auth_cookie .= $cookie[0] . '; ';
         }
 
         return $this->auth_cookie;

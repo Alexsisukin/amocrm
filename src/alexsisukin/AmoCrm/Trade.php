@@ -9,7 +9,6 @@
 namespace alexsisukin\AmoCrm;
 
 use GuzzleHttp;
-use http\Exception\InvalidArgumentException;
 
 class Trade extends Essential
 {
@@ -43,10 +42,9 @@ class Trade extends Essential
         $response = $this->core->getRequest()->Get(self::LINK, $options);
         try {
             $response = GuzzleHttp\json_decode($response['body'], true);
-        } catch (InvalidArgumentException $e) {
+        } catch (\Exception $e) {
             return false;
         }
-
         if (empty($response['_embedded']['items'])) {
             return false;
         }
@@ -68,7 +66,32 @@ class Trade extends Essential
         $response = $this->core->getRequest()->Post(self::LINK, $options);
         try {
             $response = GuzzleHttp\json_decode($response['body'], true);
-        } catch (InvalidArgumentException $e) {
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        if (empty($response['_embedded']['items'])) {
+            return false;
+        }
+        return $response['_embedded']['items'];
+    }
+
+    public function update($lead)
+    {
+
+        $options = [
+            'json' => [
+                'update' => $lead,
+            ],
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'cookie' => $this->core->getAuthCookie()
+            ],
+        ];
+        $response = $this->core->getRequest()->Post(self::LINK, $options);
+        try {
+            $response = GuzzleHttp\json_decode($response['body'], true);
+        } catch (\Exception $e) {
             return false;
         }
 

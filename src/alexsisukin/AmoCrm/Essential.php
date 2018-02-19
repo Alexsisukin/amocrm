@@ -16,4 +16,6 @@ abstract class Essential
     {
         $this->core = $core;
     }
+
+
 }

@@ -14,7 +14,7 @@ use GuzzleHttp\Exception\ClientException;
 
 class Request
 {
-
+    static $request_qty = 0;
     private $client;
 
     public function __construct($base_url)
@@ -41,6 +41,10 @@ class Request
     {
 
         try {
+            if (self::$request_qty > 0) {
+                sleep(1);
+            }
+            self::$request_qty++;
             $response = $this->client->request($method, $uri, $option);
         } catch (ClientException $e) {
             return false;
