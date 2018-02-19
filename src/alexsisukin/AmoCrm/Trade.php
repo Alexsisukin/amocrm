@@ -53,9 +53,29 @@ class Trade extends Essential
         return $response['_embedded']['items'];
     }
 
-    public function add($name, $sum, $pipeline_id)
+    public function add($lead)
     {
-        $data = [];
+
+        $options = [
+            'json' => [
+                'add' => $lead,
+            ],
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'cookie' => $this->core->getAuthCookie()
+            ],
+        ];
+        $response = $this->core->getRequest()->Post(self::LINK, $options);
+        try {
+            $response = GuzzleHttp\json_decode($response['body'], true);
+        } catch (InvalidArgumentException $e) {
+            return false;
+        }
+
+        if (empty($response['_embedded']['items'])) {
+            return false;
+        }
+        return $response['_embedded']['items'];
     }
 
 }
