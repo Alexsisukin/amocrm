@@ -9,7 +9,6 @@
 namespace alexsisukin\AmoCrm;
 
 use GuzzleHttp;
-use http\Exception\InvalidArgumentException;
 
 class Account extends Essential
 {
@@ -28,7 +27,7 @@ class Account extends Essential
         $response = $this->core->getRequest()->Get(self::LINK, $options);
         try {
             $response = GuzzleHttp\json_decode($response['body'], true);
-        } catch (InvalidArgumentException $e) {
+        } catch (\Exception $e) {
             return false;
         }
 
