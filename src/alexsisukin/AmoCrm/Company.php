@@ -3,23 +3,23 @@
  * Created by PhpStorm.
  * User: alex
  * Date: 19.02.18
- * Time: 13:24
+ * Time: 14:24
  */
 
 namespace alexsisukin\AmoCrm;
 
 use GuzzleHttp;
 
-class Contacts extends Essential
+class Company extends Essential
 {
-    const LINK = '/api/v2/contacts';
+    const LINK = '/api/v2/companies';
 
-    public function add($contact)
+    public function add($company)
     {
 
         $options = [
             'json' => [
-                'add' => $contact,
+                'add' => $company,
             ],
             'headers' => [
                 'Content-Type' => 'application/json',
@@ -66,11 +66,11 @@ class Contacts extends Essential
 
     }
 
-    public function update($contact)
+    public function update($company)
     {
         $options = [
             'json' => [
-                'update' => $contact,
+                'update' => $company,
             ],
             'headers' => [
                 'Content-Type' => 'application/json',
@@ -78,7 +78,6 @@ class Contacts extends Essential
             ],
         ];
         $response = $this->core->getRequest()->Post(self::LINK, $options);
-        var_dump($response);
         try {
             $response = GuzzleHttp\json_decode($response['body'], true);
         } catch (\Exception $e) {

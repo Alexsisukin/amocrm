@@ -8,7 +8,7 @@
 
 namespace alexsisukin\AmoCrm\structures;
 
-class ContactsAdd extends Structure
+class CompanyAdd extends Structure
 {
     public function __construct($name)
     {

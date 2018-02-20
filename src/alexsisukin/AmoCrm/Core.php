@@ -49,6 +49,16 @@ class Core
         return new Contacts($this);
     }
 
+    public function Company()
+    {
+        return new Company($this);
+    }
+
+    public function Customers()
+    {
+        return new Customers($this);
+    }
+
     /**
      * Возвращает массив кук после удачной авторизации с сохранением в переменную обьекта
      * @return bool|array

@@ -28,6 +28,9 @@ abstract class Structure
     protected $company_name;
     protected $leads_id;
     protected $customers_id;
+    protected $limit_rows;
+    protected $limit_offset;
+    protected $query;
 
     public function save()
     {
@@ -138,7 +141,7 @@ abstract class Structure
      */
     public function setResponsibleUserId($responsible_user_id)
     {
-        if (is_numeric($responsible_user_id)) {
+        if (is_numeric($responsible_user_id) || is_array($responsible_user_id)) {
             $this->responsible_user_id = $responsible_user_id;
         }
         return $this;
@@ -245,6 +248,42 @@ abstract class Structure
     public function setCustomersId($customers_id)
     {
         $this->customers_id = $customers_id;
+        return $this;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+        return $this;
+    }
+
+    /**
+     * @param mixed $limit_rows
+     */
+    public function setLimitRows($limit_rows)
+    {
+        $this->limit_rows = is_numeric($limit_rows)?$limit_rows:500;
+        return $this;
+    }
+
+    /**
+     * @param mixed $limit_offset
+     */
+    public function setLimitOffset($limit_offset)
+    {
+        $this->limit_offset = (int)$limit_offset;
+        return $this;
+    }
+
+    /**
+     * @param mixed $query
+     */
+    public function setQuery($query)
+    {
+        $this->query = $query;
         return $this;
     }
 
