@@ -16,13 +16,15 @@ class Request
 {
     static $request_qty = 0;
     private $client;
+    private $debug;
 
-    public function __construct($base_url)
+    public function __construct($base_url, $debug)
     {
         $this->client = new Client([
             'base_uri' => $base_url,
             'timeout' => 10.0,
         ]);
+        $this->debug = $debug;
     }
 
 
@@ -45,6 +47,7 @@ class Request
                 sleep(1);
             }
             self::$request_qty++;
+            $option['debug'] = (bool)$this->debug;
             $response = $this->client->request($method, $uri, $option);
         } catch (ClientException $e) {
             return false;

@@ -19,14 +19,13 @@ class Core
     private $request;
     private $host;
 
-
-    public function __construct($user_login, $user_hash, $sub_domain)
+    public function __construct($user_login, $user_hash, $sub_domain, $debug = false)
     {
         $this->user_login = $user_login;
         $this->user_hash = $user_hash;
         $this->sub_domain = $sub_domain;
         $this->host = 'https://' . $this->sub_domain . '.amocrm.ru';
-        $this->request = new Request($this->host);
+        $this->request = new Request($this->host, $debug);
     }
 
     /**
