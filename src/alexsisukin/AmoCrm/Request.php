@@ -49,7 +49,6 @@ class Request
             self::$request_qty++;
             $option['debug'] = (bool)$this->debug;
             $response = $this->client->request($method, $uri, $option);
-            var_dump($response->getBody()->getContents());
         } catch (ClientException $e) {
             return false;
         }

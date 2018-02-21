@@ -25,7 +25,6 @@ class Customers extends Essential
             ],
         ];
         $response = $this->core->getRequest()->get(self::LINK, $options);
-        var_dump($response);
         try {
             $response = GuzzleHttp\json_decode($response['body'], true);
         } catch (\Exception $e) {

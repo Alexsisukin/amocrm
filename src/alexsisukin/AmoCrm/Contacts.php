@@ -78,7 +78,6 @@ class Contacts extends Essential
             ],
         ];
         $response = $this->core->getRequest()->Post(self::LINK, $options);
-        var_dump($response);
         try {
             $response = GuzzleHttp\json_decode($response['body'], true);
         } catch (\Exception $e) {
