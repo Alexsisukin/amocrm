@@ -76,6 +76,11 @@ class Core
         return new Tasks($this);
     }
 
+    public function Lists()
+    {
+        return new Lists($this);
+    }
+
     /**
      * Возвращает массив кук после удачной авторизации с сохранением в переменную обьекта
      * @return bool|array
