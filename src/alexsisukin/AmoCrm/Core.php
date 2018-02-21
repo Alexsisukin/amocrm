@@ -44,19 +44,36 @@ class Core
         return new Trade($this);
     }
 
+    /**
+     * @return Contacts
+     */
     public function Contacts()
     {
         return new Contacts($this);
     }
 
+    /**
+     * @return Company
+     */
     public function Company()
     {
         return new Company($this);
     }
 
+    /**
+     * @return Customers
+     */
     public function Customers()
     {
         return new Customers($this);
+    }
+
+    /**
+     * @return Tasks
+     */
+    public function Tasks()
+    {
+        return new Tasks($this);
     }
 
     /**

@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: alex
  * Date: 20.02.18
- * Time: 19:00
+ * Time: 16:53
  */
 
 namespace alexsisukin\AmoCrm\structures;
 
 
-class CustomersGet extends Structure
+class TasksGet extends Structure
 {
 
 }

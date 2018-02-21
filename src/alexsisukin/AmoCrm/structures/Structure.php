@@ -31,6 +31,15 @@ abstract class Structure
     protected $limit_rows;
     protected $limit_offset;
     protected $query;
+    protected $task_type;
+    protected $element_type;
+    protected $element_id;
+    protected $complete_till_at;
+    protected $text;
+    protected $is_completed;
+    protected $created_by;
+    protected $type;
+
 
     public function save()
     {
@@ -253,6 +262,7 @@ abstract class Structure
 
     /**
      * @param mixed $tags
+     * @return Structure
      */
     public function setTags($tags)
     {
@@ -262,15 +272,17 @@ abstract class Structure
 
     /**
      * @param mixed $limit_rows
+     * @return Structure
      */
     public function setLimitRows($limit_rows)
     {
-        $this->limit_rows = is_numeric($limit_rows)?$limit_rows:500;
+        $this->limit_rows = is_numeric($limit_rows) ? $limit_rows : 500;
         return $this;
     }
 
     /**
      * @param mixed $limit_offset
+     * @return Structure
      */
     public function setLimitOffset($limit_offset)
     {
@@ -280,11 +292,98 @@ abstract class Structure
 
     /**
      * @param mixed $query
+     * @return Structure
      */
     public function setQuery($query)
     {
         $this->query = $query;
         return $this;
+    }
+
+    /**
+     * @param mixed $task_type
+     * @return Structure
+     */
+    public function setTaskType($task_type)
+    {
+        if (is_numeric($task_type)) {
+            $this->task_type = $task_type;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $element_type
+     * @return Structure
+     */
+    public function setElementType($element_type)
+    {
+        if (is_numeric($element_type)) {
+            $this->element_type = $element_type;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $element_id
+     * @return Structure
+     */
+    public function setElementId($element_id)
+    {
+        if (is_numeric($element_id)) {
+            $this->element_id = $element_id;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @param mixed $complete_till_at
+     * @return Structure
+     */
+    public function setCompleteTillAt($complete_till_at)
+    {
+        $this->complete_till_at = $complete_till_at;
+        return $this;
+    }
+
+    /**
+     * @param mixed $text
+     * @return Structure
+     */
+    public function setText($text)
+    {
+        if (is_string($text)) {
+            $this->text = $text;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $is_completed
+     * @return Structure
+     */
+    public function setIsCompleted($is_completed)
+    {
+        if (is_bool($is_completed)){
+            $this->is_completed = $is_completed;
+        }
+        return $this;
+    }
+
+    /**
+     * @param mixed $created_by
+     */
+    public function setCreatedBy($created_by)
+    {
+        $this->created_by = $created_by;
     }
 
 
