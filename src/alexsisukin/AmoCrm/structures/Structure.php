@@ -53,8 +53,12 @@ abstract class Structure
         return $params;
     }
 
-    public function setCustomFields($custom_fields, $server_fields)
+    public function setCustomFields($custom_fields, $server_fields = false)
     {
+        if ($server_fields === false) {
+            $this->CustomFields($custom_fields);
+            return;
+        }
         if (!is_array($custom_fields) || !is_array($server_fields)) {
             return;
         }
@@ -82,6 +86,26 @@ abstract class Structure
         }
 
         $this->custom_fields = $custom_fields;
+    }
+
+    private function CustomFields($custom_fields)
+    {
+        if (!is_array($custom_fields)) {
+            return;
+        }
+        $this->custom_fields = [];
+        foreach ($custom_fields as $field) {
+            if (!isset($field['id'])) {
+                continue;
+            }
+            if (!isset($field['values']) || empty($field['values'])) {
+                continue;
+            }
+            if (!is_array($field['values'])) {
+                continue;
+            }
+            $this->custom_fields[] = $field;
+        }
     }
 
     /**
@@ -372,7 +396,7 @@ abstract class Structure
      */
     public function setIsCompleted($is_completed)
     {
-        if (is_bool($is_completed)){
+        if (is_bool($is_completed)) {
             $this->is_completed = $is_completed;
         }
         return $this;
