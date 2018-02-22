@@ -39,6 +39,7 @@ abstract class Structure
     protected $is_completed;
     protected $created_by;
     protected $type;
+    protected $catalog_id;
 
 
     public function save()
@@ -408,6 +409,20 @@ abstract class Structure
     public function setCreatedBy($created_by)
     {
         $this->created_by = $created_by;
+    }
+
+    /**
+     * @param mixed $catalog_id
+     * @return Structure
+     */
+    public function setCatalogId($catalog_id)
+    {
+        if (is_numeric($catalog_id)) {
+            $this->catalog_id = $catalog_id;
+        }
+
+        return $this;
+
     }
 
 
