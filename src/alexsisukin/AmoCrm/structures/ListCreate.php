@@ -3,15 +3,15 @@
  * Created by PhpStorm.
  * User: alex
  * Date: 22.02.18
- * Time: 15:51
+ * Time: 17:05
  */
 
 namespace alexsisukin\AmoCrm\structures;
 
-class ListsAdd extends Structure
+class ListCreate extends Structure
 {
-    public function __construct($id)
+    public function __construct($name)
     {
-        $this->id = $id;
+        $this->name = $name;
     }
 }
