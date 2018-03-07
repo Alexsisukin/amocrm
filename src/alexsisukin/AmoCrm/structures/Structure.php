@@ -105,6 +105,28 @@ abstract class Structure
             if (!is_array($field['values'])) {
                 continue;
             }
+
+            foreach ($field['values'] as $i => $row) {
+                foreach ($row as $key_name => $value) {
+                    switch ($key_name) {
+                        case ('value'):
+                            if (empty($value)) {
+                                unset($field['values'][$i]);
+                            }
+                            break;
+                        case ('enum'):
+                            if (empty($value) && isset($field['values'][$i][$key_name])) {
+                                unset($field['values'][$i][$key_name]);
+                            }
+                            break;
+                        case ('subtype'):
+                            if (empty($value) && isset($field['values'][$i][$key_name])) {
+                                unset($field['values'][$i][$key_name]);
+                            }
+                            break;
+                    }
+                }
+            }
             $this->custom_fields[] = $field;
         }
     }
