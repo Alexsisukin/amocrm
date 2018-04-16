@@ -24,7 +24,7 @@ class Core
         $this->user_login = $user_login;
         $this->user_hash = $user_hash;
         $this->sub_domain = $sub_domain;
-        $this->host = 'https://' . $this->sub_domain . '.amocrm.ru';
+        $this->host = 'https://' . $this->sub_domain;
         $this->request = new Request($this->host, $debug);
     }
 
